@@ -62,8 +62,8 @@
 	  <div class="wrapper">
 				<form class="form-signin" action="/login" method="post">      
 				<h2 class="form-signin-heading">Please login</h2>
-				<input type="text" class="form-control" name="username" placeholder="username" required="" autofocus="" />
-				<input type="password" class="form-control" name="password" placeholder="Password" required=""/>     
+				<input type="text" class="form-control" name="username" placeholder="username" value="admin" required="" autofocus="" />
+				<input type="password" class="form-control" name="password" placeholder="Password" required="" value="123456"/>     
 				<c:if test="${param.error ne null}">
 				<div class="alert-danger">Invalid username and password.</div>
 				</c:if>

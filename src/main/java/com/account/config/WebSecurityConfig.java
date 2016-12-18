@@ -15,37 +15,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	DataSource dataSource;
-	
+
 	@Autowired
 	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-		
-	  auth.jdbcAuthentication().dataSource(dataSource)
-		.usersByUsernameQuery(
-			"select username,password, enabled from users where username=?")
-		.authoritiesByUsernameQuery(
-			"select username, role from user_roles where username=?");
-	}	
-	
+
+		auth.jdbcAuthentication().dataSource(dataSource)
+				.usersByUsernameQuery("select username,password, enabled from users where username=?")
+				.authoritiesByUsernameQuery("select username, role from user_roles where username=?");
+	}
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-	  http.authorizeRequests()
-		//.antMatchers("/index").access("hasRole('ROLE_ADMIN')")		
-			.anyRequest().authenticated()
-		.and()
-		  .formLogin()
-		  	.loginPage("/login")
-		  	.usernameParameter("username").passwordParameter("password")
-		  	.permitAll()
-		.and()
-		  .logout().logoutSuccessUrl("/login?logout")	
-		 .and()
-		 .exceptionHandling().accessDeniedPage("/403")
-		.and()
-		  .csrf(); 
+		http.authorizeRequests()
+				// .antMatchers("/index").access("hasRole('ROLE_ADMIN')")
+				.anyRequest().authenticated().and().formLogin().loginPage("/login").usernameParameter("username")
+				.passwordParameter("password").permitAll().and().logout().logoutSuccessUrl("/login?logout").and()
+				.exceptionHandling().accessDeniedPage("/403").and().csrf();
 
-		   
- 
 	}
-	
+
 }
