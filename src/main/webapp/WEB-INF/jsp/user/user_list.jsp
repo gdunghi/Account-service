@@ -1,36 +1,61 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Accounting Dashboard</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="<spring:url value="vendor/bootstrap/css/bootstrap.min.css"/>" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="<spring:url value="vendor/metisMenu/metisMenu.min.css"/>" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="<spring:url value="dist/css/sb-admin-2.css"/>"  rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="<spring:url value="vendor/morrisjs/morris.css"/>" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="<spring:url value="vendor/font-awesome/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="title pull-left">ผู้ใช้งาน</h1>
+             <div class="z-btn-add btn-group pull-right" style="margin: 10px 0 20px;">
+              <button type="button" style="background-color:  #2BBA6F;" class="btn btn-lg z-btn-lg z-btn-green height43" onclick="openAddContact();"><i class="icon ion-android-add"></i> เพิ่มลูกค้า/คู่ค้าใหม่</button>
+              <button type="button" style="background-color:  #1E9C5A;" class="btn btn-lg z-btn-lg z-btn-green btn-icon dropdown-toggle height43" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="caret"></span>
+                  <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu sub-nav">
+                  <li><a href="javascript:openAddContact();">เพิ่มผู้ใช้งานใหม่</a></li>
+                  <li><a href="javascript:openImportContact();">นำเข้าไฟล์ (Excel)</a></li>
+              </ul>
+          </div> 
+        </div>
+       
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                   User list
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>User name</th>
+                                <th>Full name</th> 
+                                <th>Email</th>
+                                <th>Enable</th>
+                                <th>Last active</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        	<c:forEach items="${userList}" var="item">
+								<tr>									 
+									<td>${item.userName}</td>
+									<td>${item.fullName}</td>
+									<td>${item.email}</td>
+									<td>${item.enabled}</td>
+									<td>${item.lastActiveDate}</td>
+								</tr>
+							</c:forEach> 
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>       
+</div>
+<!-- /#page-wrapper -->

@@ -17,6 +17,11 @@ public class MainController {
 		model.addAttribute("name", name);
 		return "index";
 	}
+	
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	public String user(Model model) { 
+		return "index";
+	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model model) {

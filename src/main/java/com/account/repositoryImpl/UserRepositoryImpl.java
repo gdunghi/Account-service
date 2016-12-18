@@ -2,6 +2,7 @@ package com.account.repositoryImpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,29 +21,29 @@ public class UserRepositoryImpl implements UserRepository {
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public long save(UserDto user) { 
+	public long save(UserDto user) {
 		return 0;
 	}
 
 	@Override
-	@Transactional(readOnly=true)
-	public List<UserDto> findByAll() { 
+	@Transactional(readOnly = true)
+	public List<UserDto> findByAll() {
 		return jdbcTemplate.query("SELECT * FROM users ", new UserRowMapper());
-     
+
 	}
-	
-	
-	
-	class UserRowMapper implements RowMapper<UserDto>
-	{
-	    @Override
-	    public UserDto mapRow(ResultSet rs, int rowNum) throws SQLException 
-	    {
-	    	UserDto user = new UserDto();         
-	        user.setUserName(rs.getString("username"));
-	        user.setEnabled(rs.getBoolean("enabled")); 
-	        return user;
-	    }
+
+	class UserRowMapper implements RowMapper<UserDto> {
+		@Override
+		public UserDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+			UserDto user = new UserDto();
+			user.setUserName(rs.getString("username"));
+			user.setEnabled(rs.getBoolean("enabled"));
+			user.setFname(rs.getString("fname"));
+			user.setLname(rs.getString("lname"));
+			user.setEmail(rs.getString("email"));
+			user.setLastActiveDate(new Date());
+			return user;
+		}
 	}
 
 }
