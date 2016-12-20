@@ -14,6 +14,8 @@ import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
+import liquibase.integration.spring.SpringLiquibase;
+
 @Configuration
 public class MvcConfig extends WebMvcConfigurerAdapter {
 
@@ -70,5 +72,14 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 		resolver.setSuffix(".jsp");
 		return resolver;
 	}
+	
+	@Bean 
+    public SpringLiquibase liquibase() {       
+        SpringLiquibase liquibase = new SpringLiquibase(); 
+        liquibase.setDataSource(dataSource()); 
+        liquibase.setChangeLog("classpath:db/changelog/db.changelog-master.xml"); 
+        liquibase.setContexts("development, production"); 
+        return liquibase; 
+    } 
 
 }

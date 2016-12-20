@@ -69,16 +69,41 @@
          <h4 class="modal-title">User</h4>
        </div>
        	<form action="${contextPath}/user/save" id="saveUser"  method="POST" >
-	       <div class="modal-body">
-	       		 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
-		         <input type="text" class="form-control adduser"  name="userName" id="userName" placeholder="User name" />
-		         <input type="text" class="form-control adduser" name="password" id="password" placeholder="Password" />
-		         <input type="text" class="form-control adduser" name="fname" id="fname" placeholder="First name" />
-				 <input type="text" class="form-control adduser" name="lname" id="lname" placeholder="Last name" />  
-				 <input type="text" class="form-control adduser" name="email" id="email" placeholder="Email" /> 
-			
+	       <div class="modal-body" >
+	       		  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
+	       		  <div id="div_id_username" class="form-group required">
+                      <label for="id_username" class="control-label col-md-4  requiredField"> Username<span class="asteriskField">*</span> </label>
+                      <div class="controls col-md-8 ">
+                          <input type="text" class="form-control adduser"  name="userName" id="userName" placeholder="User name" style="margin-bottom: 10px"/>
+                      </div>
+                  </div>
+                  
+                   <div  class="form-group required">
+                      <label for="id_username" class="control-label col-md-4  requiredField"> Password<span class="asteriskField">*</span> </label>
+                      <div class="controls col-md-8 ">
+                           <input type="password" class="form-control adduser" name="password" id="password" placeholder="Password" style="margin-bottom: 10px"/>
+                      </div>
+                  </div>
+	       		  <div  class="form-group required">
+                      <label for="id_username" class="control-label col-md-4  requiredField"> First name<span class="asteriskField">*</span> </label>
+                      <div class="controls col-md-8 ">
+                           <input type="text" class="form-control adduser" name="fname" id="fname" placeholder="First name" style="margin-bottom: 10px"/>
+                      </div>
+                  </div>
+                  <div  class="form-group required">
+                      <label for="id_username" class="control-label col-md-4  requiredField"> Last name<span class="asteriskField">*</span> </label>
+                      <div class="controls col-md-8 ">
+                           <input type="text" class="form-control adduser" name="lname" id="lname" placeholder="Last name" style="margin-bottom: 10px"/>  
+                      </div>
+                  </div>
+                  <div  class="form-group required">
+                      <label for="id_username" class="control-label col-md-4  requiredField"> Email<span class="asteriskField">*</span> </label>
+                      <div class="controls col-md-8 ">
+                           <input type="email" class="form-control adduser" name="email" id="email" placeholder="Email" style="margin-bottom: 10px"/> 
+                      </div>
+                  </div> 
 	       </div>
-	       <div class="modal-footer">
+	       <div class="modal-footer" style="border: none;">
 	       		<button type="button" class="btn btn-primary" id ="btn-save">Save</button> 
 	         	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 	       </div>

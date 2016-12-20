@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.account.dto.UserDto;
 import com.account.repository.UserRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequestMapping("/user")
@@ -31,15 +29,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(ModelMap model) {
-		model.addAttribute("userList", repo.findByAll());
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			model.addAttribute("userList", mapper.writeValueAsString(repo.findByAll()));
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public String list(ModelMap model) {		 
 		return "user/user_list";
 	}
 
