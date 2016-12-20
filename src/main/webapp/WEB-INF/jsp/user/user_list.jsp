@@ -79,8 +79,7 @@
 			
 	       </div>
 	       <div class="modal-footer">
-	       		<button type="button" class="btn btn-primary" id ="btn-save">Save</button>
-	       		<button type="button" class="btn btn-primary" id ="refesh">Save</button>
+	       		<button type="button" class="btn btn-primary" id ="btn-save">Save</button> 
 	         	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 	       </div>
         </form>
