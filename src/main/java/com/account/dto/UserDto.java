@@ -6,6 +6,7 @@ public class UserDto {
 	
 	private long id;
 	private String userName;
+	private String password;
 	private boolean enabled;
 	private String fname;
 	private String lname;
@@ -56,11 +57,18 @@ public class UserDto {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 	public String getFullName() {
-		return fname + "  " + lname;
+		return fullName;
 	}
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	

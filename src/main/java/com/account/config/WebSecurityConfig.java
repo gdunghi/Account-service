@@ -29,9 +29,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests()
 				// .antMatchers("/index").access("hasRole('ROLE_ADMIN')")
-				.anyRequest().authenticated().and().formLogin().loginPage("/login").usernameParameter("username")
-				.passwordParameter("password").permitAll().and().logout().logoutSuccessUrl("/login?logout").and()
-				.exceptionHandling().accessDeniedPage("/403").and().csrf();
+				.anyRequest().authenticated()
+				.and()
+					.formLogin()
+					.loginPage("/login") 
+					.usernameParameter("username")
+					.passwordParameter("password")
+					.permitAll()
+				.and()
+					.logout().logoutSuccessUrl("/login?logout")
+				.and()
+					.exceptionHandling().accessDeniedPage("/403")
+					//TODO
+			    .and().csrf().disable()
+					;
 
 	}
 

@@ -9,27 +9,37 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.account.dto.UserDto;
 import com.account.repository.UserRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
-	
+
 	@Autowired
-	private UserRepository repo ;
+	private UserRepository repo;
+
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add() {
 		return "user/add";
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(@ModelAttribute("user") UserDto user) { 
+	public String save(@ModelAttribute("user") UserDto user) {
 		repo.save(user);
 		return "redirect:/user/list";
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(ModelMap model) {	
+	public String list(ModelMap model) {
 		model.addAttribute("userList", repo.findByAll());
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			model.addAttribute("userList", mapper.writeValueAsString(repo.findByAll()));
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "user/user_list";
 	}
 

@@ -14,5 +14,9 @@ public class StringBuilderUtil {
 	public void append(String str){
 		sb.append(str);
 	}
+	
+	public String toString(){
+		return sb.toString();
+	}
 
 }

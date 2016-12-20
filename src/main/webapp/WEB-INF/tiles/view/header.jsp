@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+    
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -9,7 +15,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/index">Accounting service V 0.1</a>
+                <a class="navbar-brand" href="${contextPath}/index">Accounting service V 0.1</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -215,7 +221,7 @@
                         </li>
                         <li class="divider"></li>
                             <a href="#" id="logoutSubmit"><i class="fa fa-gear fa-fw"></i> Log out</a>
-                            <form action="/logout" method="post" id="loutOutForm" style="visible: false" >                                
+                            <form action="${pageContext.request.contextPath}/logout" method="post" id="loutOutForm" style="visible: false" >                                
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             </form>
                         </li>
@@ -241,13 +247,13 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="/index"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="${contextPath}/index"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-edit fa-fw"></i>User<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="user/list">User</a>
+                                    <a href="${contextPath}/user/list">User</a>
                                 </li> 
                             </ul>
                             <!-- /.nav-second-level -->

@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.account.dto.UserDto;
 import com.account.repository.UserRepository;
+import com.account.utils.StringBuilderUtil;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
@@ -21,8 +22,12 @@ public class UserRepositoryImpl implements UserRepository {
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
+	@Transactional
 	public long save(UserDto user) {
-		return 0;
+		StringBuilderUtil sb = new StringBuilderUtil();
+		sb.appendNl(" INSERT INTO USERS (username,password,enabled,fname,lname,email) VALUES (?,?,?,?,?,?) "); 
+		return   jdbcTemplate.update(sb.toString(),
+				new Object[] { user.getUserName(),user.getPassword(), user.isEnabled(),user.getFname(),user.getLname(),user.getEmail()});
 	}
 
 	@Override
@@ -42,6 +47,7 @@ public class UserRepositoryImpl implements UserRepository {
 			user.setLname(rs.getString("lname"));
 			user.setEmail(rs.getString("email"));
 			user.setLastActiveDate(new Date());
+			user.setFullName(user.getFname()+"  " + user.getLname());
 			return user;
 		}
 	}
