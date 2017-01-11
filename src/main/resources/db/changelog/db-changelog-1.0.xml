@@ -1,16 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<databaseChangeLog
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
 
-    
+
+	<changeSet author="jirayu.ph" id="create-user">
+		<comment>insert queries</comment>
+		<sql dbms="mysql">
+			CREATE TABLE users (
+			username varchar(45) NOT NULL,
+			password varchar(45) NOT NULL,
+			enabled tinyint(4) NOT NULL DEFAULT 1,
+			fname varchar(45) DEFAULT NULL,
+			lname varchar(45) DEFAULT NULL,
+			email varchar(100) DEFAULT NULL,
+			PRIMARY KEY (username)
+			) ENGINE=InnoDB
+			DEFAULT CHARSET=utf8;
+		</sql>
+	</changeSet>
 
 
 
-  
-  
+	<changeSet author="jirayu.ph" id="create-user_roles">
+		<comment>insert queries</comment>
+		<sql dbms="mysql">
+			CREATE TABLE user_roles (
+			user_role_id int(11) NOT NULL
+			AUTO_INCREMENT,
+			username varchar(45) NOT NULL,
+			role varchar(45) NOT
+			NULL,
+			PRIMARY KEY (user_role_id),
+			UNIQUE KEY uni_username_role
+			(role,username),
+			KEY fk_username_idx (username),
+			CONSTRAINT fk_username
+			FOREIGN KEY (username) REFERENCES users (username))
+			ENGINE=InnoDB
+			DEFAULT CHARSET=utf8;
+		</sql>
+	</changeSet>
+
+	<changeSet author="jirayu.ph" id="init-default-user">
+		<comment>insert queries</comment>
+		<sql dbms="mysql">
+			INSERT INTO users(username,password,enabled ,fname , lname , email)
+			VALUES ('admin','123456', true,'jirayu','a','jirayu.a@gmail.com');
+			INSERT INTO users(username,password,enabled ,fname , lname , email)
+			VALUES ('user','123456', true,'kitichet','b','kitichet.a@gmail.com');
+
+			INSERT INTO user_roles (username, role)
+			VALUES ('admin', 'ROLE_USER');
+			INSERT INTO user_roles (username, role)
+			VALUES ('admin', 'ROLE_ADMIN');
+			INSERT INTO user_roles (username, role)
+			VALUES ('user', 'ROLE_USER'); 
+
+		</sql>
+	</changeSet>
+
+
+
+
+
+
+
+
 </databaseChangeLog>
