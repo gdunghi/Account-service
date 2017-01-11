@@ -29,6 +29,7 @@ public class UserRestController {
 	@RequestMapping(value = "/save" , method = RequestMethod.POST)
 	public AjaxResponseBody save(@RequestBody UserDto user) { 
 		AjaxResponseBody result = new AjaxResponseBody(); 
+		System.out.println("saved");
 		if (repo.save(user) > 0) {
 			result.setCode("200");
 			result.setMsg(""); 
