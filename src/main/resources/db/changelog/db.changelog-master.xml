@@ -7,6 +7,6 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
 
-    <include file="cee.database.sql" relativeToChangelogFile="true" /> 
+<!--     <include file="create.database.sql" relativeToChangelogFile="true" />  -->
     <include file="db-changelog-1.0.xml" relativeToChangelogFile="true"/>  
 </databaseChangeLog>
