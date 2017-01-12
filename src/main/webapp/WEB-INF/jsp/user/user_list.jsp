@@ -173,19 +173,25 @@ $("#refesh").click(function(event) {
 }); 
 
 $("#btn-save").click(function(event) { 
-	var data = {}
-	data["${_csrf.parameterName}"] = "${_csrf.token}";
+	var data = {} 
 	data["userName"] = $("#userName").val();
 	data["password"] = $("#password").val();
 	data["fname"] = $("#fname").val();
 	data["lname"] = $("#lname").val();
 	data["email"] = $("#email").val(); 
-
+	
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");  
+	
+	
 	$("#btn-save").prop("disabled", true); 
 	$.ajax({
              type: "POST",
              contentType: "application/json",
              url: "${contextPath}/user-rest/save",
+             beforeSend: function(request) {
+           	    request.setRequestHeader(header, token);
+           	  },
              data: JSON.stringify(data),
              dataType: 'json',
              timeout: 600000,

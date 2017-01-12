@@ -19,6 +19,7 @@ public class UserController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add() {
+		System.out.println("aaa");
 		return "user/add";
 	}
 
